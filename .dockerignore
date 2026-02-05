@@ -1,0 +1,47 @@
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+*.md
+DESIGN.md
+LICENSE
+LICENSES/
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# IDE and editor files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+sfu-server
+*.test
+*.out
+
+# Go workspace
+vendor/
+bin/
+pkg/
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp

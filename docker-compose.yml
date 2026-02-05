@@ -1,0 +1,44 @@
+services:
+  coturn:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: coturn-server
+    # Use host networking for proper NAT traversal
+    # For production with Docker networks, map ports explicitly
+    network_mode: host
+    # Uncomment below for bridge networking:
+    # ports:
+    #   - "3478:3478/tcp"
+    #   - "3478:3478/udp"
+    #   - "5349:5349/tcp"
+    #   - "5349:5349/udp"
+    #   - "49152-65535:49152-65535/udp"  # Full relay port range
+    # networks:
+    #   - coturn-network
+    #   - shared-network
+    restart: unless-stopped
+    volumes:
+      - ./coturn:/etc/coturn:ro
+    environment:
+      - TZ=UTC
+      # Auto-detect external IP or set explicitly
+      - EXTERNAL_IP=${EXTERNAL_IP:-auto}
+      - RELAY_IP=${RELAY_IP:-auto}
+      - TURN_USERNAME=${TURN_USERNAME:-sfuuser}
+      - TURN_PASSWORD=${TURN_PASSWORD:-sfupass123}
+      - REALM=${REALM:-sfu.local}
+    labels:
+      - "com.sfu.service=coturn-server"
+      - "com.sfu.description=STUN/TURN Server"
+
+# Uncomment if using bridge networking
+# networks:
+#   coturn-network:
+#     driver: bridge
+#     name: coturn-network
+#   
+#   shared-network:
+#     driver: bridge
+#     name: shared-network
+#     # external: true  # If SFU is in separate compose

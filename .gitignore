@@ -1,0 +1,40 @@
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+/logs/
+/var/log/
+
+# Temporary files
+*.tmp
+tmp/
+temp/
+
+# Certificates (if generated locally)
+*.pem
+*.crt
+*.key
+
+# Backups
+*.bak
+*.backup
