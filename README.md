@@ -4,9 +4,9 @@ STUN/TURN server for NAT traversal in WebRTC applications, providing relay servi
 
 ## Related Projects
 
-- **SFU Server**: [github.com/iotatomberg/sfu-server](https://github.com/iotatomberg/sfu-server) - WebRTC SFU that connects to this TURN server
-- **Flutter App**: [github.com/iotatomberg/sfu-flutter-app](https://github.com/iotatomberg/sfu-flutter-app) - Mobile client
-- **Load Test**: [github.com/iotatomberg/sfu-load-test](https://github.com/iotatomberg/sfu-load-test) - Performance testing
+- **SFU Server**: [github.com/tmanomukil/sfu-server](https://github.com/tmanomukil/sfu-server) - WebRTC SFU that connects to this TURN server
+- **Flutter App**: [github.com/tmanomukil/sfu-flutter-app](https://github.com/tmanomukil/sfu-flutter-app) - Mobile client
+- **Load Test**: [github.com/tmanomukil/sfu-load-test](https://github.com/tmanomukil/sfu-load-test) - Performance testing
 
 ## What is Coturn?
 
@@ -99,7 +99,7 @@ user=username:password
 
 ⚠️ **IMPORTANT**: TURN credentials must match between:
 1. This Coturn server (`TURN_USERNAME`, `TURN_PASSWORD`)
-2. SFU server configuration (see [sfu-server](https://github.com/iotatomberg/sfu-server))
+2. SFU server configuration (see [sfu-server](https://github.com/tmanomukil/sfu-server))
 
 ## Ports Required
 
@@ -176,7 +176,7 @@ sudo usermod -aG docker $USER
 
 ```bash
 # Clone repository
-git clone https://github.com/iotatomberg/coturn-server.git
+git clone https://github.com/tmanomukil/coturn-server.git
 cd coturn-server
 
 # Get public IP
@@ -317,4 +317,4 @@ Coturn is licensed under BSD. See LICENSE file.
 
 - [Coturn Documentation](https://github.com/coturn/coturn/wiki)
 - [WebRTC and NAT Traversal](https://webrtc.org/getting-started/turn-server)
-- [SFU Server Integration Guide](https://github.com/iotatomberg/sfu-server)
+- [SFU Server Integration Guide](https://github.com/tmanomukil/sfu-server)
