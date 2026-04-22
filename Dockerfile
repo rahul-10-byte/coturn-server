@@ -18,27 +18,20 @@ RUN apt-get update && apt-get install -y \
 # Create directory for logs
 RUN mkdir -p /var/log && touch /var/log/turnserver.log
 
-# Copy configuration file
-COPY coturn/turnserver.conf /etc/turnserver.conf
+# Copy configuration file (compose bind-mount can override this path)
+COPY coturn/turnserver.conf /etc/coturn/turnserver.conf
 
-# Create a startup script to detect host IP
+# Create a startup script.
 RUN echo '#!/bin/bash\n\
-# Detect host IP for relay\n\
-RELAY_IP=${RELAY_IP:-$(hostname -I | awk "{print \$1}")}\n\
-echo "Using relay IP: $RELAY_IP"\n\
-\n\
-# Get container IPs for binding\n\
+# Show container IP for quick diagnostics\n\
 CONTAINER_IP=$(hostname -I | awk "{print \$1}")\n\
 echo "Container IP: $CONTAINER_IP"\n\
 \n\
-# Start turnserver with correct configuration\n\
-# --listening-ip: bind to all interfaces in container\n\
-# --external-ip: advertise the host IP to clients\n\
-# relay will bind to container IP automatically\n\
+# Start turnserver using the mounted config file only.\n\
+# Avoid command-line external-ip overrides because they can conflict\n\
+# with EC2 public/private mapping in turnserver.conf.\n\
 exec turnserver \
-    -c /etc/turnserver.conf \
-    --listening-ip=0.0.0.0 \
-    --external-ip=$RELAY_IP \
+    -c /etc/coturn/turnserver.conf \
     --verbose\n\
 ' > /usr/local/bin/start-coturn.sh && chmod +x /usr/local/bin/start-coturn.sh
 

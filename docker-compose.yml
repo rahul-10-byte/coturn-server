@@ -22,9 +22,9 @@ services:
       - ./coturn:/etc/coturn:ro
     environment:
       - TZ=UTC
-      # Auto-detect external IP or set explicitly
-      - EXTERNAL_IP=${EXTERNAL_IP:-auto}
-      - RELAY_IP=${RELAY_IP:-auto}
+      # Keep compose env aligned with turnserver.conf to avoid startup overrides.
+      - EXTERNAL_IP=16.112.32.114
+      - RELAY_IP=172.31.16.173
       - TURN_USERNAME=${TURN_USERNAME:-sfuuser}
       - TURN_PASSWORD=${TURN_PASSWORD:-sfupass123}
       - REALM=${REALM:-sfu.local}
